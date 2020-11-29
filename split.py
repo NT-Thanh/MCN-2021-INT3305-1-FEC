@@ -1,5 +1,5 @@
 i = 0
-readSize = 1000
+readSize = 150
 with open("sample.txt", "r", encoding="utf8") as in_file:
     bytes = in_file.read(readSize)  # read 5000 bytes
     while bytes:
