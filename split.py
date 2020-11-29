@@ -1,19 +1,19 @@
 i = 0
 readSize = 150
-with open("sample.txt", "r", encoding="utf8") as in_file:
-    bytes = in_file.read(readSize)  # read 5000 bytes
-    while bytes:
+with open("sample.png", "rb") as in_file:
+    bytesIn = in_file.read(readSize)  # read 5000 bytes
+    while bytesIn:
         number = str(i)
 
         # tinh toan them phan header cho du 16 bytes stt.sobytedonthem....
-        header = number + "." + str(readSize - len(bytes))
+        header = number + "." + str(readSize - len(bytesIn))
         if(len(header) < 16):
             header += "." * (16 - len(header))
         print(header)
         
-        with open("split_output/out-file-" + number, 'w', encoding="utf8") as output:
-            output.write(header) # viet phan header
-            output.write(bytes) # viet phan data
-            output.write("." * (readSize - len(bytes))) # viet phan don them cho du readSize bytes
-        bytes = in_file.read(readSize)
+        with open("split_output/out-file-" + number, 'wb') as output:
+            output.write(bytes(header, encoding="utf8")) # viet phan header
+            output.write(bytesIn) # viet phan data
+            output.write(bytes("." * (readSize - len(bytesIn)), encoding="utf8")) # viet phan don them cho du readSize bytes
+        bytesIn = in_file.read(readSize)
         i += 1
