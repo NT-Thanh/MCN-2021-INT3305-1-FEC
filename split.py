@@ -1,5 +1,5 @@
 i = 0
-readSize = 150
+readSize = 300
 with open("sample.png", "rb") as in_file:
     bytesIn = in_file.read(readSize)  # read 5000 bytes
     while bytesIn:
