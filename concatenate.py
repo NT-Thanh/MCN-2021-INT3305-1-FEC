@@ -25,6 +25,9 @@ for filename in os.listdir("split_output"):
         # elif(-1*int(headerparams[1]) != 0):
             # blocks[int(headerparams[0])] = bytearray(bytesIn)
         else:
+            if(int(headerparams[0]) >= len(blocks)):
+                blocks[len(blocks)-1] = bytearray(bytesIn)
+                continue
             blocks[int(headerparams[0])] = bytearray(bytesIn)
 
 i = 0
@@ -42,7 +45,6 @@ for block in blocks:
         i += 1
         continue
     headerparams = block[:16].split(bytes('.', encoding="utf8"))
-    print(headerparams)
     if(-1*int(headerparams[1]) != 0):
         array += block[16:-1*int(headerparams[1])]
     else:
